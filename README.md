@@ -61,5 +61,26 @@ Please answer these questions after implementing:
 
 1. (part 1) Implement your solution in a copy of this repo (please don't create a fork with your solution) and feel free to either add it to a private repo or bundle it in a zip file.
 2. (part 2) Write your answers in a Notion, Google Doc, this README or whatever you feel most comfortable with.
-3. (bonus) Record a short walkthrough of your implementation on [Loom](https://www.loom.com/)
+3. (bonus) Record a short walk-through of your implementation on [Loom](https://www.loom.com/)
 4. Send links to all of the above to [work@fractional.app](mailto:work@fractional.app)
+
+## File Structure
+
+- `components/`: contains our stateless React components.
+- `pages/`: contains the app's routes (the file path/name represents the route)
+- `server/`: contains our GraphQL schema and resolvers
+- `seed.sql`: contains a basic seed of users and communities to populate the DB locally (feel free to modify this as you see fit).
+
+## Route Structure
+
+- `/` (home page)
+  - You'll see a list of communities on this page that you can navigate to.
+  - Ideally the user's timeline should be rendered in this page as well.
+- `/community/[id]` (community page)
+  - This page will contain individual communities and a list of members.
+  - Ideally the communities posts should be rendered here.
+- `/profile/[id]` (profile page)
+  - This page contains some basic user information and a list of the communities they are a member of.
+  - Ideally the posts created by a user should be rendered here.
+- `/api/graphql` (GraphQL API)
+  - Our GraphQL API is hosted here.
