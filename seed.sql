@@ -51,17 +51,17 @@ CREATE TABLE posts (
 INSERT INTO users
 (id, created_at, updated_at, profile_photo, name, bio)
 VALUES
-(1,  "2021-05-28 06:26", "2021-05-28 06:26", "https://mock-images.s3-us-west-1.amazonaws.com/green-placeholder.svg", "Mario Gonzalez", "I'm a retired software engineer turned Cool Whip connoisseur."),
-(2,  "2021-05-28 08:26", "2021-05-28 08:26", "https://mock-images.s3-us-west-1.amazonaws.com/red-placeholder.svg",   "Paquita Perez",  "I'm a retired software engineer turned Cool Whip connoisseur.");
+(1,  "2021-05-28 06:26", "2021-05-28 06:26", "https://mock-images.s3-us-west-1.amazonaws.com/green-placeholder.svg", "Mario Gonzalez", "I'm a retired software engineer turned single-family home investor in DFW."),
+(2,  "2021-05-28 08:26", "2021-05-28 08:26", "https://mock-images.s3-us-west-1.amazonaws.com/red-placeholder.svg",   "Paquita Perez",  "I'm a local loan officer and RE investor in Dallas.");
 
 
 INSERT INTO communities
 (id, created_at, updated_at, icon, name, description)
 VALUES
-(1,  "2021-05-28 06:26", "2021-05-28 06:26", "🍨",  "CoolWhip Investors", "Home to all those that like to invest in CoolWhip"),
-(2,  "2021-05-28 08:26", "2021-05-28 08:26", "🐶",  "Meme Investors", "For those who don't like to paint inside the line cause honestly it looks better like that");
+(1,  "2021-05-28 06:26", "2021-05-28 06:26", "🤠",  "Dallas Fort Worth Investors", "Home to all investors in the Dallas Fort Worth market"),
+(2,  "2021-05-28 08:26", "2021-05-28 08:26", "🔨",  "BRRRR Investors", "We're not cold. We just want to buy, rehab, rent, refinance, and repeat.");
 
-INSERT INTO memberships 
+INSERT INTO memberships
 (user_id, community_id, created_at)
 VALUES
 (1,  1, "2021-05-28 06:26"),

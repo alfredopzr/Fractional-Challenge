@@ -41,7 +41,7 @@ const ProfilePage = () => {
       <div className="flex">
         <Card className="flex-1">
           <h1 className="text-2xl font-bold">{user.name}'s posts</h1>
-          <p>A user's posts would look great here.</p>  
+          <p>Posts created by the user (the user's timeline) should be shown in this section.</p>  
         </Card>
         <Card className="ml-4 py-10 max-w-xs flex-none grid justify-items-center gap-2 max-w-xs">
           <div className="text-2xl rounded-full bg-white w-14 h-14 flex items-center justify-center">
