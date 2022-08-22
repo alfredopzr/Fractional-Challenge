@@ -19,3 +19,20 @@ export const community = async (parent, { id }) => {
 
   return community;
 };
+
+export const post = async (_, { id }) => {
+  try {
+    const post = await get(
+      `
+    SELECT * 
+    FROM posts 
+    WHERE id = ?
+  `,
+      [id]
+    );
+    return post;
+  } catch (e) {
+    console.log(e);
+  }
+  return post;
+};

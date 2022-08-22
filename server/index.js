@@ -8,7 +8,7 @@ const typeDefs = gql`
     description: String!
     icon: String!
     members: [User!]!
-    posts: [Post!]!
+    posts: [Post!]
   }
 
   type User {
@@ -30,7 +30,25 @@ const typeDefs = gql`
   type Query {
     community(id: Int!): Community!
     user(id: Int!): User!
+    post(id: Int!): Post!
   }
+
+  input AddPostInput {
+    id: Int!
+    text: String!
+    user_id: String!
+  }
+
+  input DeletePostInput {
+    id: Int!
+  }
+
+  type Mutation {
+    addPost(input: AddPostInput!): Post
+    deletePost(input: DeletePostInput!): Post
+  }
+
+
 `;
 
 export const server = new ApolloServer({ typeDefs, resolvers });

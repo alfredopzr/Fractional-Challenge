@@ -10,3 +10,14 @@ export const members = async (community) => {
 
   return members;
 };
+// Query for all posts in community
+export const posts = async (community) => {
+  const posts = await query(`
+    SELECT p.*
+    FROM memberships m
+    JOIN posts p on m.user_id = p.user_id
+    WHERE m.community_id = ?
+  `, [community.id]);
+
+  return posts;
+};
