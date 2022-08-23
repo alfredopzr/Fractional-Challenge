@@ -20,16 +20,21 @@ export const community = async (parent, { id }) => {
   return community;
 };
 
+
+// Query all posts and join with User data
 export const post = async (_, { id }) => {
   try {
     const post = await get(
       `
-    SELECT * 
-    FROM posts 
-    WHERE id = ?
+      SELECT posts.id, posts.text, posts.user_id, users.name, users.profile_photo
+      FROM posts
+      INNER JOIN users
+      ON posts.user_id = users.id
+      WHERE users.id = ?;
   `,
       [id]
     );
+    console.log("Post:", post)
     return post;
   } catch (e) {
     console.log(e);

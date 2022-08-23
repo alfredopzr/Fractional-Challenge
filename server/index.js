@@ -25,6 +25,8 @@ const typeDefs = gql`
     text: String!
     user: User!
     user_id: String!
+    name: String!
+    profile_photo: String!
   }
 
   type Query {

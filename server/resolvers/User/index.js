@@ -10,7 +10,7 @@ export const communities = async (user) => {
 
   return communities;
 };
-// Query all users posts
+// Query all posts of a specific user
 export const posts = async (user) => {
   const posts = await query(`
     SELECT p.*
