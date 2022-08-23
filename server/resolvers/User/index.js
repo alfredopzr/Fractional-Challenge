@@ -13,7 +13,7 @@ export const communities = async (user) => {
 // Query all posts of a specific user
 export const posts = async (user) => {
   const posts = await query(`
-  SELECT p.*, u.name, u.profile_photo
+  SELECT DISTINCT p.*, u.name, u.profile_photo
   FROM memberships m
   JOIN posts p on m.user_id = p.user_id
   INNER JOIN users u on p.user_id = u.id

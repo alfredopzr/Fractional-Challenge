@@ -50,7 +50,7 @@ const ProfilePage = () => {
           <h1 className="text-2xl font-bold">{user.name}'s posts</h1>
           <p>Posts created by the user (the user's timeline) should be shown in this section.</p>
           <div>
-          {user.posts.map(({ id, name, profile_photo, text }) => (
+          {user.posts?.map(({ id, name, profile_photo, text }) => (
             <div key={id}>
               <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>
                 <Post id={id} name={name} profile_photo={profile_photo} text={text}/>
