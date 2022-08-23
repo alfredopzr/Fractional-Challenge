@@ -4,6 +4,7 @@ import { useQuery, gql } from '@apollo/client'
 import Card from '@/components/Card';
 import CommunityCardButton from '@/components/CommunityCardButton';
 import Page from '@/components/Page';
+import Post from '@/components/Post';
 
 const USER_QUERY = gql`
   query ($id: Int!) {
@@ -16,6 +17,12 @@ const USER_QUERY = gql`
         id
         name
         icon
+      }
+      posts {
+        id
+        text
+        name
+        profile_photo
       }
     }
   }
@@ -41,7 +48,18 @@ const ProfilePage = () => {
       <div className="flex">
         <Card className="flex-1">
           <h1 className="text-2xl font-bold">{user.name}'s posts</h1>
-          <p>Posts created by the user (the user's timeline) should be shown in this section.</p>  
+          <p>Posts created by the user (the user's timeline) should be shown in this section.</p>
+          <div>
+          {user.posts.map(({ id, name, profile_photo, text }) => (
+            <div key={id}>
+              <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>
+                <Post id={id} name={name} profile_photo={profile_photo} text={text}/>
+              </Card>
+            </div>
+              
+            
+          ))}
+          </div>  
         </Card>
         <Card className="ml-4 py-10 max-w-xs flex-none grid justify-items-center gap-2 max-w-xs">
           <div className="text-2xl rounded-full bg-white w-14 h-14 flex items-center justify-center">

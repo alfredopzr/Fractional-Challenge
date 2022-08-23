@@ -1,6 +1,7 @@
 import Card from '@/components/Card';
 import CommunityCardButton from '@/components/CommunityCardButton';
 import Page from '@/components/Page';
+import AddPostForm from '@/components/AddPostForm';
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <Card className="flex-1">
           <h1 className="text-2xl font-bold">Welcome back! 👋</h1>
           <p>Your newsfeed should be shown in this section.</p>
+          <AddPostForm />
         </Card>
         <Card className="ml-4 max-w-xs flex-none">
           <h2 className="text-md font-bold">Communities</h2>

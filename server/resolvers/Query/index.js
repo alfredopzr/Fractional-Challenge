@@ -41,3 +41,21 @@ export const post = async (_, { id }) => {
   }
   return post;
 };
+export const posts = async (_, { id }) => {
+  try {
+    const posts = await get(
+      `
+      SELECT posts.*, users.name, users.profile_photo
+      FROM posts
+      INNER JOIN users
+      ON posts.user_id = users.id
+  `,
+      [id]
+    );
+    console.log("Posts:", posts)
+    return posts;
+  } catch (e) {
+    console.log(e);
+  }
+  return posts;
+};
