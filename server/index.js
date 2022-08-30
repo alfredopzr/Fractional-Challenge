@@ -33,9 +33,9 @@ const typeDefs = gql`
     community(id: Int!): Community!
     user(id: Int!): User!
     post(id: Int!): Post!
-    posts: [Post]!
+    posts: [Post!]!
   }
-
+  
   input AddPostInput {
     id: Int!
     text: String!

@@ -7,6 +7,9 @@ const Home = () => {
   return (
     <Page>
       <div className="flex">
+        <Card className="mr-4">
+          <AddPostForm />
+        </Card>
         <Card className="flex-1">
           <h1 className="text-2xl font-bold">Welcome back! 👋</h1>
           <p>Your newsfeed should be shown in this section.</p>

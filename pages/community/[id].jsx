@@ -37,6 +37,7 @@ const CommunityPage = () => {
     },
   })
 
+  // console.log("data", data);
   const community = data?.community;
 
   if (!community || loading) {
@@ -50,13 +51,11 @@ const CommunityPage = () => {
           <h1 className="text-2xl font-bold">Welcome to {community.name}</h1>
           <p>The community feed containing all the community’s posts should be shown in this section.</p>
           <div>
-          {community.posts.map(({ id, name, profile_photo, text }) => (
-              
-                <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>
-                  <Post id={id} name={name} profile_photo={profile_photo} text={text}/>
-                </Card>
-              
-            ))}
+            {community.posts.map(({ id, name, profile_photo, text }) => (
+                  <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>
+                    <Post id={id} name={name} profile_photo={profile_photo} text={text}/>
+                  </Card>
+              ))}
             </div>
         </Card>
         <Card className="ml-4 py-10 max-w-xs flex-none grid justify-items-center gap-2 max-w-xs">
