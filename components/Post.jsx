@@ -1,8 +1,29 @@
 import React from 'react'
+import { gql, useMutation } from '@apollo/client';
+
+const DELETE_POST = gql`
+  mutation DeletePost($id: Int!){
+    deletePost(input: {
+        id: $id
+    }){
+        id
+    }
+}
+`;
 
 const Post = ({id, name, profile_photo, text}) => {
+
+    const [deletePost] = useMutation(DELETE_POST);
+
     return (
         <div className="text-md flex-column">
+            <form onSubmit={e => {
+                e.preventDefault();
+                console.log("VALUES", typeof id, id)
+                deletePost({ variables: { id: id} });
+            }}>
+            <button type="submit">Delete Post</button>
+            </form>
             {/* Post Header */}
             <div className="flex justify-content-between font-bold mr-4 w-full pb-2 " >
                 

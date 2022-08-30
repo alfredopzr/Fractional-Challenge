@@ -32,6 +32,7 @@ const ADD_POST = gql`
 }
 `;
 
+
 const AddPostForm = () => {
     let post_id,text,user_id;
     const [addPost] = useMutation(ADD_POST);
@@ -43,7 +44,7 @@ const AddPostForm = () => {
             <form
             onSubmit={e => {
                 e.preventDefault();
-                console.log("VALUES", typeof parseInt(post_id.value), typeof text.value)
+                // console.log("VALUES", typeof parseInt(post_id.value), typeof text.value)
                 addPost({ variables: { id: parseInt(post_id.value), text: text.value, user_id: "1" } });
             }}
             class="pure-form pure-form-aligned form"
