@@ -3,28 +3,10 @@ import {React, useState} from 'react'
 import Card from '@/components/Card';
 
 
-const ADD_VIDEO_MUTATION = gql`
-    mutation createVideo($title: String!, $url: String!, $userId: String!) {
-        createVideo( input: { title: $title, url: $url, userId: $userId } ) {
-            id
-            title
-            url
-            author {
-                id
-                name
-            }
-        }
-    }
-`;
-
 
 const ADD_POST = gql`
-  mutation AddPost($id: Int!, $text: String!, $user_id: String!){
-    addPost(input: {
-        id: $id,
-        text: $text,
-        user_id: $user_id
-    }){
+  mutation AddPost($input: AddPostInput!){
+    addPost(input: $input){
         id
         text
         user_id
@@ -34,36 +16,42 @@ const ADD_POST = gql`
 
 
 const AddPostForm = () => {
-    let post_id,text,user_id;
     const [addPost] = useMutation(ADD_POST);
 
+    // Add Post States
+    const [postId, setPostId] = useState(0);
+    const [text, setText] = useState("");
 
     return (
         <div>
             <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>      
             <form
-            onSubmit={e => {
-                e.preventDefault();
-                // console.log("VALUES", typeof parseInt(post_id.value), typeof text.value)
-                addPost({ variables: { id: parseInt(post_id.value), text: text.value, user_id: "1" } });
+            onSubmit={() => {
+                // console.log("VALUES", typeof parseInt(postId.value), typeof text.value)
+                addPost({ variables: { input: {id: parseInt(postId), text: text, user_id: "1" } } });
             }}
             class="pure-form pure-form-aligned form"
             >
                 <fieldset>
                     <div class="pure-control-group">
-                        <label for="post_id">ID</label>
+                        <label for="postId">ID</label>
                         <input
-                            ref={value => post_id = value}
-                            id="post_id"
+                            
+                            id="postId"
                             placeholder="Enter a ID"
+                            onChange={(event) => {
+                                setPostId(event.target.value)
+                            }}
                         />
                     </div>
                     <div class="pure-control-group">
-                        <label for="url">text</label>
+                        <label for="text">text</label>
                         <input
-                            ref={value => text = value}
                             id="text"
                             placeholder="Enter a text"
+                            onChange={(event) => {
+                                setText(event.target.value)
+                            }}
                         />
                     </div>
                     <div class="pure-controls">

@@ -56,8 +56,6 @@ const ProfilePage = () => {
                 <Post id={id} name={name} profile_photo={profile_photo} text={text}/>
               </Card>
             </div>
-              
-            
           ))}
           </div>  
         </Card>
