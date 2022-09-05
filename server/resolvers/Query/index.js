@@ -41,7 +41,7 @@ export const post = async (_, { id }) => {
   }
   return post;
 };
-export const posts = async (_, ) => {
+export const posts = async (_, {offset, limit}) => {
   try {
     const posts = await query(
       `
@@ -53,7 +53,7 @@ export const posts = async (_, ) => {
   `,
       []
     );
-    return posts;
+    return posts.slice(offset, limit+offset);
   } catch (e) {
     console.log(e);
   }

@@ -5,10 +5,12 @@ import AddPostForm from '@/components/AddPostForm';
 import { gql, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router'
 import Post from '@/components/Post';
+import {useEffect, useState} from 'react'
+import { InView } from "react-intersection-observer";
 
 const HOME_POSTS_QUERY = gql`
-  query {
-    posts {
+  query($limit: Int, $offset: Int) {
+    posts(limit: $limit, offset: $offset) {
       id
       text
       name
@@ -17,14 +19,20 @@ const HOME_POSTS_QUERY = gql`
 }
 `;
 
+
 const Home = () => {
   const { query } = useRouter();
-  const { loading, error, data } = useQuery(HOME_POSTS_QUERY);
+  const { loading, error, data, fetchMore } = useQuery(HOME_POSTS_QUERY, {
+    variables: {
+      offset: 0,
+      limit: 2
+    },
+  });
 
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
-
   const posts = data?.posts;
+
   return (
     <Page>
       <div className="flex">
@@ -32,11 +40,26 @@ const Home = () => {
           <h1 className="text-2xl font-bold">Welcome back! 👋</h1>
           <p>Your newsfeed should be shown in this section.</p>
           <AddPostForm />
-          {posts.map(({ id, name, profile_photo, text }) => (
+          {posts && posts.map(({ id, name, profile_photo, text }) => (
                   <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>
                     <Post id={id} name={name} profile_photo={profile_photo} text={text}/>
                   </Card>
-              ))}
+          ))}
+          {data && (
+        <InView
+          onChange={async (inView) => {
+            const currentLength = posts.length || 0;
+            if (inView) {
+              await fetchMore({
+                variables: {
+                  offset: currentLength,
+                  limit: currentLength + 3,
+                },
+              });
+            }
+          }}
+        />
+      )}
         </Card>
         <Card className="ml-4 max-w-xs flex-none">
           <h2 className="text-md font-bold">Communities</h2>

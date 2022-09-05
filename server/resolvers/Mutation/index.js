@@ -12,7 +12,7 @@ export const addPost = async (_, {input} ) => {
         `,
             [input.id, input.text, input.user_id]
     );
-    console.log("post", post);
+    // console.log("post", post);
     return post;
 
 };
@@ -28,7 +28,7 @@ export const deletePost = async (_, {input} ) => {
             `,
                 [input.id]
         );
-        console.log("post", post);
+        // console.log("post", post);
         return post;
     } catch (e){
         console.log(e);
