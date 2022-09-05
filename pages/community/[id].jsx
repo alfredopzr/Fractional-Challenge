@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useQuery, gql } from '@apollo/client'
-
+import {useEffect, useState} from 'react'
 import Card from '@/components/Card';
 import CardButton from '@/components/CardButton';
 import Page from '@/components/Page';
@@ -30,16 +30,38 @@ const COMMUNITY_QUERY = gql`
 `;
 
 const CommunityPage = () => {
+  
   const { query } = useRouter();
   const { data, loading } = useQuery(COMMUNITY_QUERY, {
     skip: !query.id,
     variables: {
-      id: Number(query.id),
+      id: Number(query.id)
     },
   })
-
-  // console.log("data", data);
   const community = data?.community;
+  
+  
+  // useEffect(()=> {
+  //    loadMorePosts();
+  
+  //   window.addEventListener('scroll', handleScroll)
+  // }, []);
+  
+  // const loadMorePosts = () => {
+  //   const newPost = [];
+  //   data?.community.posts.forEach((p) => newPost.push(p));
+  //   setPost(newPost);
+  //   console.log("post", post);
+  // }
+
+  // const handleScroll = (e) => {
+    
+  //   if(window.innerHeight + e.target.documentElement.scrollTop + 1 >= e.target.documentElement.scrollHeight){
+  //     console.log("at bottom of page")
+  //     loadMorePosts();
+  //   }
+  // }
+  
 
   if (!community || loading) {
     return null;

@@ -35,7 +35,7 @@ const typeDefs = gql`
     post(id: Int!): Post!
     posts: [Post!]!
   }
-  
+
   input AddPostInput {
     id: Int!
     text: String!

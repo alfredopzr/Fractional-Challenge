@@ -18,6 +18,7 @@ export const posts = async (user) => {
   JOIN posts p on m.user_id = p.user_id
   INNER JOIN users u on p.user_id = u.id
   WHERE m.user_id = ?
+  ORDER BY p.created_ts DESC;
   `, [user.id]);
 
   return posts;

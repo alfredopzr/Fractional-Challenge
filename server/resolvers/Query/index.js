@@ -1,4 +1,4 @@
-import { get } from '@/server/db';
+import { get, query } from '@/server/db';
 
 export const user = async (parent, { id }) => {
   const user = await get(`
@@ -34,28 +34,28 @@ export const post = async (_, { id }) => {
   `,
       [id]
     );
-    console.log("Post:", post)
+    // console.log("Post:", post)
     return post;
   } catch (e) {
     console.log(e);
   }
   return post;
 };
-export const posts = async (_, { id }) => {
+export const posts = async (_, ) => {
   try {
-    const posts = await get(
+    const posts = await query(
       `
-      SELECT posts.*, users.name, users.profile_photo
+      SELECT DISTINCT posts.*, users.name, users.profile_photo
       FROM posts
       INNER JOIN users
       ON posts.user_id = users.id
+      ORDER BY posts.created_ts DESC;
   `,
-      [id]
+      []
     );
-    console.log("Posts:", posts)
     return posts;
   } catch (e) {
     console.log(e);
   }
-  return posts;
+  
 };
