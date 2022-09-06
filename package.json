@@ -18,7 +18,8 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-intersection-observer": "^9.4.0",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.2",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
