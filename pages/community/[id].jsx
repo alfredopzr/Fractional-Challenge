@@ -82,7 +82,7 @@ const CommunityPage = () => {
               )}
             </div>
         </Card>
-        <Card className="ml-4 py-10 max-w-xs flex-none grid justify-items-center gap-2 max-w-xs">
+        <Card className="ml-4 py-10 max-w-xs flex-none grid justify-items-center gap-2 max-w-xs" style={{height: "100%"}}>
           <div className="text-2xl rounded-full bg-white w-14 h-14 flex items-center justify-center">
             {community.icon}
           </div>
