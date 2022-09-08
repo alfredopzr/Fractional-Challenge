@@ -16,49 +16,39 @@ const ADD_POST = gql`
 `;
 
 
-const AddPostForm = ({posts}) => {
+const AddPostForm = () => {
     const [addPost] = useMutation(ADD_POST);
 
     // Add Post States
-    const [postId, setPostId] = useState(0);
     const [text, setText] = useState("");
 
     return (
         <div>
-            <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>      
+            <Card className="flex justify-items-between my-2" style={{backgroundColor: "white"}}>      
             <form
             onSubmit={() => {
-                // console.log("VALUES", typeof parseInt(postId.value), typeof text.value)
-                addPost({ variables: { input: {id: parseInt(postId), text: text, user_id: "1" } } });
+                addPost({ variables: { input: {text: text, user_id: "1" } } });
             }}
-            class="pure-form pure-form-aligned form"
             >
-                <fieldset>
-                    <div class="pure-control-group">
-                        <label for="postId">ID</label>
-                        <input
-                            
-                            id="postId"
-                            placeholder="Enter Post ID"
-                            onChange={(event) => {
-                                setPostId(event.target.value)
-                            }}
-                        />
+                    <div className="flex flex-wrap justify-items-between">
+                        <div className="flex">
+                            <input
+                                id="text"
+                                placeholder="Enter text"
+                                onChange={(event) => {
+                                    setText(event.target.value)
+                                }}
+                                className="mr-12"
+                            />
+                        <div>
+                            <button type="submit" 
+                            style={{backgroundColor: "lightblue", marginLeft: "100px"}}
+                            className="flex items-center p-2 rounded ml-auto"
+                            >Add Post</button>
+                        </div>
+                        </div>
+
                     </div>
-                    <div class="pure-control-group">
-                        <label for="text">text</label>
-                        <input
-                            id="text"
-                            placeholder="Enter a text"
-                            onChange={(event) => {
-                                setText(event.target.value)
-                            }}
-                        />
-                    </div>
-                    <div class="pure-controls">
-                        <button type="submit">Add Post</button>
-                    </div>
-                </fieldset>
             </form>
             </Card>
       </div>

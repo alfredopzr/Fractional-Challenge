@@ -4,16 +4,20 @@ import { post } from '../Query';
 
 // Add Post Working
 export const addPost = async (_, {input} ) => {
-    const post = input;
-    const postQuery = await query(
-        `
-        INSERT INTO posts (id,text, user_id) 
-        VALUES (?, ?, ?);
-        `,
-            [input.id, input.text, input.user_id]
-    );
-    // console.log("post", post);
-    return post;
+    try {
+        const post = input;
+        const postQuery = await query(
+            `
+            INSERT INTO posts (text, user_id) 
+            VALUES (?, ?);
+            `,
+                [input.text, input.user_id]
+        );
+        return post;
+
+    } catch (e) {
+        console.log(e);
+    }
 
 };
 

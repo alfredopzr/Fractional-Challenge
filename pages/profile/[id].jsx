@@ -5,6 +5,7 @@ import Card from '@/components/Card';
 import CommunityCardButton from '@/components/CommunityCardButton';
 import Page from '@/components/Page';
 import Post from '@/components/Post';
+import AddPostForm from '@/components/AddPostForm';
 
 const USER_QUERY = gql`
   query ($id: Int!, $limit: Int, $offset: Int) {
@@ -56,6 +57,7 @@ const ProfilePage = () => {
           <h1 className="text-2xl font-bold">{user.name}'s posts</h1>
           <p>Posts created by the user (the user's timeline) should be shown in this section.</p>
           <div>
+          <AddPostForm />
           {posts && posts.map(({ id, name, profile_photo, text }, index) => (
             <div >
               <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>

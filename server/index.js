@@ -21,7 +21,7 @@ const typeDefs = gql`
   }
 
   type Post {
-    id: Int!
+    id: Int
     text: String!
     user: User!
     user_id: String!
@@ -37,7 +37,7 @@ const typeDefs = gql`
   }
 
   input AddPostInput {
-    id: Int!
+    id: Int
     text: String!
     user_id: String!
   }
