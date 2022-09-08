@@ -9,6 +9,16 @@ const cache = new InMemoryCache({
           posts: offsetLimitPagination(),
         },
       },
+      Community: {
+        fields: {
+          posts: offsetLimitPagination(),
+        },
+      },
+      User: {
+        fields: {
+          posts: offsetLimitPagination(),
+        },
+      },
     },
   });
 

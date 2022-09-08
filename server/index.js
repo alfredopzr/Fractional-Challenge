@@ -8,7 +8,7 @@ const typeDefs = gql`
     description: String!
     icon: String!
     members: [User!]!
-    posts: [Post!]
+    posts(offset: Int, limit: Int): [Post!]
   }
 
   type User {
@@ -17,7 +17,7 @@ const typeDefs = gql`
     bio: String!
     profile_photo: String!
     communities: [Community!]!
-    posts: [Post!]!
+    posts(offset: Int, limit: Int): [Post!]!
   }
 
   type Post {

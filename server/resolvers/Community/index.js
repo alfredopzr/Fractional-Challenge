@@ -11,15 +11,18 @@ export const members = async (community) => {
   return members;
 };
 // Query for all posts in community
-export const posts = async (community) => {
-  const posts = await query(`
-  SELECT p.*, u.name, u.profile_photo
-  FROM memberships m
-  JOIN posts p on m.user_id = p.user_id
-  JOIN users u ON p.user_id = u.id
-  WHERE m.community_id = ?
-  ORDER BY p.created_ts DESC;
-  `, [community.id]);
-  console.log(posts);
-  return posts;
+export const posts = async (community, {offset, limit}) => {
+  try {
+    const posts = await query(`
+    SELECT p.*, u.name, u.profile_photo
+    FROM memberships m
+    JOIN posts p on m.user_id = p.user_id
+    JOIN users u ON p.user_id = u.id
+    WHERE m.community_id = ?
+    ORDER BY p.created_ts DESC;
+    `, [community.id]);
+    return posts.slice(offset, limit+offset);
+  } catch (e) {
+    console.log(e);
+  }
 };

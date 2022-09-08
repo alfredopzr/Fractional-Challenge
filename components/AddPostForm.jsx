@@ -22,35 +22,29 @@ const AddPostForm = ({posts}) => {
     // Add Post States
     const [postId, setPostId] = useState(0);
     const [text, setText] = useState("");
-    console.log(posts.length);
-
-    const setId = () => {
-        setPostId(posts.length + 1);
-    }
 
     return (
         <div>
             <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>      
             <form
             onSubmit={() => {
-                
                 // console.log("VALUES", typeof parseInt(postId.value), typeof text.value)
                 addPost({ variables: { input: {id: parseInt(postId), text: text, user_id: "1" } } });
             }}
             class="pure-form pure-form-aligned form"
             >
                 <fieldset>
-                    {/* <div class="pure-control-group">
+                    <div class="pure-control-group">
                         <label for="postId">ID</label>
                         <input
                             
                             id="postId"
-                            placeholder="Enter a ID"
+                            placeholder="Enter Post ID"
                             onChange={(event) => {
                                 setPostId(event.target.value)
                             }}
                         />
-                    </div> */}
+                    </div>
                     <div class="pure-control-group">
                         <label for="text">text</label>
                         <input
@@ -58,7 +52,6 @@ const AddPostForm = ({posts}) => {
                             placeholder="Enter a text"
                             onChange={(event) => {
                                 setText(event.target.value)
-                                setId();
                             }}
                         />
                     </div>

@@ -46,20 +46,20 @@ const Home = () => {
                   </Card>
           ))}
           {data && (
-        <InView
-          onChange={async (inView) => {
-            const currentLength = posts.length || 0;
-            if (inView) {
-              await fetchMore({
-                variables: {
-                  offset: currentLength,
-                  limit: currentLength + 3,
-                },
-              });
-            }
-          }}
-        />
-      )}
+            <InView
+              onChange={async (inView) => {
+                const currentLength = posts.length || 0;
+                if (inView) {
+                  await fetchMore({
+                    variables: {
+                      offset: currentLength,
+                      limit: currentLength + 3,
+                    },
+                  });
+                }
+              }}
+            />
+          )}
         </Card>
         <Card className="ml-4 max-w-xs flex-none">
           <h2 className="text-md font-bold">Communities</h2>

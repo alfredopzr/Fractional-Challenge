@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router'
 import { useQuery, gql } from '@apollo/client'
-
+import { InView } from "react-intersection-observer";
 import Card from '@/components/Card';
 import CommunityCardButton from '@/components/CommunityCardButton';
 import Page from '@/components/Page';
 import Post from '@/components/Post';
 
 const USER_QUERY = gql`
-  query ($id: Int!) {
+  query ($id: Int!, $limit: Int, $offset: Int) {
     user(id: $id) {
       id
       name
@@ -18,7 +18,7 @@ const USER_QUERY = gql`
         name
         icon
       }
-      posts {
+      posts(limit: $limit, offset: $offset) {
         id
         text
         name
@@ -30,14 +30,20 @@ const USER_QUERY = gql`
 
 const ProfilePage = () => {
   const { query } = useRouter();
-  const { data, loading } = useQuery(USER_QUERY, {
+  const { data, loading, error, fetchMore} = useQuery(USER_QUERY, {
     skip: !query.id,
     variables: {
       id: Number(query.id),
+      offset: 0,
+      limit: 2
     },
-  })
+  });
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
 
   const user = data?.user;
+  const posts = data?.user.posts;
 
   if (!user || loading) {
     return null;
@@ -50,13 +56,29 @@ const ProfilePage = () => {
           <h1 className="text-2xl font-bold">{user.name}'s posts</h1>
           <p>Posts created by the user (the user's timeline) should be shown in this section.</p>
           <div>
-          {user.posts?.map(({ id, name, profile_photo, text }) => (
-            <div key={id}>
+          {posts && posts.map(({ id, name, profile_photo, text }, index) => (
+            <div >
               <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>
-                <Post id={id} name={name} profile_photo={profile_photo} text={text}/>
+                <Post key={index} id={id} name={name} profile_photo={profile_photo} text={text}/>
               </Card>
             </div>
           ))}
+          {data && (
+                <InView
+                  onChange={async (inView) => {
+                    const currentLength = posts.length || 0;
+                    if (inView) {
+                      await fetchMore({
+                        variables: {
+                          id: Number(query.id),
+                          offset: currentLength,
+                          limit: currentLength + 2,
+                        },
+                      });
+                    }
+                  }}
+                />
+              )}
           </div>  
         </Card>
         <Card className="ml-4 py-10 max-w-xs flex-none grid justify-items-center gap-2 max-w-xs">
