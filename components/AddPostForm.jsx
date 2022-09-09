@@ -1,8 +1,6 @@
 import { gql, useMutation } from '@apollo/client';
 import {React, useState} from 'react'
 import Card from '@/components/Card';
-import { v4 as uuid } from 'uuid';
-
 
 
 const ADD_POST = gql`
@@ -15,7 +13,6 @@ const ADD_POST = gql`
 }
 `;
 
-
 const AddPostForm = () => {
     const [addPost] = useMutation(ADD_POST);
 
@@ -25,31 +22,30 @@ const AddPostForm = () => {
     return (
         <div>
             <Card className="flex justify-items-between my-2" style={{backgroundColor: "white"}}>      
-            <form
-            onSubmit={() => {
-                addPost({ variables: { input: {text: text, user_id: "1" } } });
-            }}
-            >
-                    <div className="flex flex-wrap justify-items-between">
-                        <div className="flex">
-                            <input
-                                id="text"
-                                placeholder="Enter text"
-                                onChange={(event) => {
-                                    setText(event.target.value)
-                                }}
-                                className="mr-12"
-                            />
-                        <div>
-                            <button type="submit" 
-                            style={{backgroundColor: "lightblue", marginLeft: "100px"}}
-                            className="flex items-center p-2 rounded ml-auto"
-                            >Add Post</button>
+                <form
+                onSubmit={() => {
+                    addPost({ variables: { input: {text: text, user_id: "2" } } });
+                }}
+                >
+                        <div className="flex flex-wrap justify-items-between">
+                            <div className="flex">
+                                <input
+                                    id="text"
+                                    placeholder="Enter text"
+                                    onChange={(event) => {
+                                        setText(event.target.value)
+                                    }}
+                                    className="mr-12"
+                                />
+                            <div>
+                                <button type="submit" 
+                                style={{backgroundColor: "lightblue", marginLeft: "100px"}}
+                                className="flex items-center p-2 rounded ml-auto"
+                                >Add Post</button>
+                            </div>
+                            </div>
                         </div>
-                        </div>
-
-                    </div>
-            </form>
+                </form>
             </Card>
       </div>
       

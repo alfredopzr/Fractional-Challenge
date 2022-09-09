@@ -10,6 +10,8 @@ export const members = async (community) => {
 
   return members;
 };
+
+
 // Query for all posts in community
 export const posts = async (community, {offset, limit}) => {
   try {

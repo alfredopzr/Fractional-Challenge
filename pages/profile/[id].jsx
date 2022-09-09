@@ -57,30 +57,30 @@ const ProfilePage = () => {
           <h1 className="text-2xl font-bold">{user.name}'s posts</h1>
           <p>Posts created by the user (the user's timeline) should be shown in this section.</p>
           <div>
-          <AddPostForm />
-          {posts && posts.map(({ id, name, profile_photo, text }, index) => (
-            <div >
-              <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>
-                <Post key={index} id={id} name={name} profile_photo={profile_photo} text={text}/>
-              </Card>
-            </div>
-          ))}
-          {data && (
-                <InView
-                  onChange={async (inView) => {
-                    const currentLength = posts.length || 0;
-                    if (inView) {
-                      await fetchMore({
-                        variables: {
-                          id: Number(query.id),
-                          offset: currentLength,
-                          limit: currentLength + 2,
-                        },
-                      });
-                    }
-                  }}
-                />
-              )}
+            <AddPostForm />
+            {posts && posts.map(({ id, name, profile_photo, text }, index) => (
+              <div>
+                <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>
+                  <Post key={index} id={id} name={name} profile_photo={profile_photo} text={text}/>
+                </Card>
+              </div>
+            ))}
+            {data && (
+                  <InView
+                    onChange={async (inView) => {
+                      const currentLength = posts.length || 0;
+                      if (inView) {
+                        await fetchMore({
+                          variables: {
+                            id: Number(query.id),
+                            offset: currentLength,
+                            limit: currentLength + 2,
+                          },
+                        });
+                      }
+                    }}
+                  />
+                )}
           </div>  
         </Card>
         <Card className="ml-4 py-10 max-w-xs flex-none grid justify-items-center gap-2 max-w-xs" style={{height: "100%"}}>

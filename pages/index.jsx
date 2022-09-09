@@ -9,8 +9,8 @@ import {useEffect, useState} from 'react'
 import { InView } from "react-intersection-observer";
 
 const HOME_POSTS_QUERY = gql`
-  query($limit: Int, $offset: Int) {
-    posts(limit: $limit, offset: $offset) {
+  query($offset: Int, $limit: Int) {
+    posts(offset: $offset, limit: $limit) {
       id
       text
       name
@@ -18,7 +18,6 @@ const HOME_POSTS_QUERY = gql`
     }
 }
 `;
-
 
 const Home = () => {
   const { query } = useRouter();
@@ -53,7 +52,7 @@ const Home = () => {
                   await fetchMore({
                     variables: {
                       offset: currentLength,
-                      limit: currentLength + 3,
+                      limit: currentLength + 2
                     },
                   });
                 }
@@ -61,7 +60,7 @@ const Home = () => {
             />
           )}
         </Card>
-        <Card className="ml-4 max-w-xs flex-none">
+        <Card className="ml-4 max-w-xs flex-none" style={{height: "100%"}}>
           <h2 className="text-md font-bold">Communities</h2>
           <ul className="grid gap-4 mt-2">
             <li>
