@@ -6,13 +6,15 @@ import { post } from '../Query';
 export const addPost = async (_, {input} ) => {
     try {
         const post = input;
+        console.log("input", input);
         const postQuery = await query(
             `
-            INSERT INTO posts (text, user_id) 
-            VALUES (?, ?);
+            INSERT INTO posts (text, user_id, source_id) 
+            VALUES (?, ?, ?);
             `,
-                [input.text, input.user_id]
+                [input.text, input.user_id, input.source_id]
         );
+
         return post;
 
     } catch (e) {

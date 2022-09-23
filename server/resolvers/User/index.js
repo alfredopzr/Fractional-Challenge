@@ -20,7 +20,7 @@ export const posts = async (user, {offset, limit}) => {
     FROM memberships m
     JOIN posts p on m.user_id = p.user_id
     INNER JOIN users u on p.user_id = u.id
-    WHERE m.user_id = ?
+    WHERE u.id = ?
     ORDER BY p.created_ts DESC;
     `, [user.id]);
   

@@ -38,7 +38,6 @@ const Home = () => {
         <Card className="flex-1">
           <h1 className="text-2xl font-bold">Welcome back! 👋</h1>
           <p>Your newsfeed should be shown in this section.</p>
-          <AddPostForm posts={posts}/>
           {posts && posts.map(({ id, name, profile_photo, text }, index) => (
                   <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>
                     <Post key={index} id={id} name={name} profile_photo={profile_photo} text={text}/>

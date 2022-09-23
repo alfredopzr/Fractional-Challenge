@@ -9,22 +9,22 @@ const ADD_POST = gql`
         id
         text
         user_id
+        source_id
     }
 }
 `;
 
-const AddPostForm = () => {
+const AddPostForm = ({source_id}) => {
     const [addPost] = useMutation(ADD_POST);
 
     // Add Post States
     const [text, setText] = useState("");
-
     return (
         <div>
             <Card className="flex justify-items-between my-2" style={{backgroundColor: "white"}}>      
                 <form
                 onSubmit={() => {
-                    addPost({ variables: { input: {text: text, user_id: "2" } } });
+                    addPost({ variables: { input: {text: text, user_id: "1", source_id: source_id} } });
                 }}
                 >
                         <div className="flex flex-wrap justify-items-between">

@@ -58,7 +58,7 @@ const CommunityPage = () => {
           <h1 className="text-2xl font-bold">Welcome to {community.name}</h1>
           <p>The community feed containing all the community’s posts should be shown in this section.</p>
           <div>
-            <AddPostForm />
+            <AddPostForm source_id={community.id}/>
             {posts && posts.map(({ id, name, profile_photo, text }, index) => (
                   <Card className="flex items-center my-4" style={{backgroundColor: "white"}}>
                     <Post key={index} id={id} name={name} profile_photo={profile_photo} text={text}/>

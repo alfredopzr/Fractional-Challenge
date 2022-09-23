@@ -27,6 +27,7 @@ const typeDefs = gql`
     user_id: String!
     name: String!
     profile_photo: String!
+    source_id: Int
   }
 
   type Query {
@@ -40,6 +41,7 @@ const typeDefs = gql`
     id: Int
     text: String!
     user_id: String!
+    source_id: Int
   }
 
   input DeletePostInput {
